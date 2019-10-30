@@ -11,6 +11,9 @@
 # Ordered list of GTEx v8 tissue names
 tissue_names_file="/work-zfs/abattle4/bstrober/rare_variant/gtex_v8/splicing/input_data/gtex_v8_tissues.txt"
 
+# File containing mapping from GTEx v8 tissue names to tissue colors
+tissue_colors_file="/work-zfs/abattle4/bstrober/rare_variant/gtex_v8/splicing/input_data/gtex_colors.txt"
+
 # File containing list of genes (ensamble IDs) to be used in this analysis
 # File provided by Nicoloe Ferraro
 gtex_v8_gene_list="/work-zfs/abattle4/bstrober/rare_variant/gtex_v8/splicing/input_data/gencode.v26.GRCh38.genes_genetypes_autosomal_PCandlinc_only.txt"
@@ -77,6 +80,9 @@ if false; then
 sh generate_linc_rna_only_outlier_files.sh $tissue_names_file $gtex_v8_gene_list $linc_rna_gene_list $gtex_v8_outlier_calls_dir $cluster_info_file $outlier_calls_dir
 fi
 
-
+if false; then
 sh variant_position_enrichment_shell.sh $gtex_v8_processed_rare_variant_dir $variant_enrichment_dir $variant_position_enrichment_dir $outlier_calls_dir $european_ancestry_individual_list $gencode_gene_annotation_file $cluster_info_file $exon_file $tissue_names_file
+fi
 
+
+Rscript visualize_outliers.R $tissue_names_file $outlier_calls_dir $variant_enrichment_dir $visualization_dir $tissue_colors_file

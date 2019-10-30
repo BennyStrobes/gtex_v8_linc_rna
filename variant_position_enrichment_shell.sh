@@ -25,7 +25,6 @@ enrichment_version="all"
 ##################################
 # Tissue-by Tissue variant outlier enrichment
 ##################################
-if false; then
 # Range of Distances
 distances=( "2" "4" "6" "8" "10" "100" "1000")
 # Range of pvalue thresholds
@@ -52,7 +51,7 @@ for distance_window in "${distances[@]}"; do
 
 	done
 done
-fi
+
 
 
 
@@ -64,7 +63,6 @@ distances=( "2" "4" "6" "8" "10" "100" "1000")
 # Loop through distances
 for distance_window in "${distances[@]}"; do
 	echo "Multi-tissue distance="$distance_window
-	if false; then
 	# Run cross tissue enrichment using this sized window for LINCRNA
 	splicing_outlier_file=$outlier_calls_dir"cross_tissue_covariate_method_none_no_global_outliers_ea_only_emperical_pvalue_lincrna.txt"
 	variant_bed_file=$rare_variant_dir"variant_cluster_only_bed_"$distance_window".txt"
@@ -78,7 +76,6 @@ for distance_window in "${distances[@]}"; do
 	previous_variant_bed_file=$rare_variant_dir"variant_cluster_only_bed_"$previous_distance".txt"
 	output_root=$variant_enrichment_dir"cross_tissue_variant_outlier_enrichment_mutually_exclusive_distance_"$distance_window"_version_"$enrichment_version"_gene_type_proteincoding"
 	python variant_cross_tissue_mutually_exclusive_distance_enrichment_quantification.py $variant_bed_file $previous_variant_bed_file $output_root $splicing_outlier_file $european_ancestry_individual_list $enrichment_version
-	fi
 
 	# Run cross tissue enrichment using this sized window for LINCRNA
 	splicing_outlier_file=$outlier_calls_dir"cross_tissue_covariate_method_none_no_global_outliers_ea_only_emperical_pvalue_lincrna.txt"
